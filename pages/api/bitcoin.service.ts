@@ -1,5 +1,5 @@
 import httpService from "../../http/http.service"
-import { Bitcoin } from "./bitcoint"
+import { Bitcoin } from "./bitcoin"
 
 const bitcoinServce = {
      getBitcoinValue: async (): Promise<any> => {
