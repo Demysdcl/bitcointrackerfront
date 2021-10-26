@@ -3,8 +3,7 @@ import type { AppProps } from 'next/app'
 import { useRouter } from 'next/dist/client/router'
 import React, { useState } from 'react'
 import 'tailwindcss/tailwind.css'
-
-
+import OutsideAlerter from '../components/Outsider'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -42,9 +41,14 @@ function MyApp({ Component, pageProps }: AppProps) {
         <OptionMenu className="hidden md:flex gap-4" />
 
         <div className="flex md:hidden relative">
-          <MenuIcon width="24" onClick={() => setShowMobileMenu(!showMobileMenu)}/>
           
-          {showMobileMenu && <OptionMenu className="gap-4 absolute right-0 top-6 bg-indigo-600 p-10 flex flex-col" />}
+          <MenuIcon width="24" onClick={() => setShowMobileMenu(!showMobileMenu)}/>
+
+          {showMobileMenu && (
+            <OutsideAlerter handleOutside={() => setShowMobileMenu(false)}>
+              <OptionMenu className="gap-4 absolute right-0 top-6 bg-indigo-600 p-10 flex flex-col" />
+            </OutsideAlerter>
+          )}
         </div>
       </div>
     </header>
