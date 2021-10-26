@@ -68,18 +68,18 @@ const Home: NextPage = () => {
           </div>
         </Card>
 
-        <Card className="w-96 ">
+        <Card className="w-96">
           <div>
             <span className="bg-indigo-600 text-white p-2 font-bold block mb-4">
               Total adquirido:
             </span>
             <span className="font-bold text-2xl md:text-5xl text-gray-600">
-              R$ {dashboard && dashboard.fractions.toFixed(2)}
+              BTC {dashboard && dashboard.fractions.toFixed(8)}
             </span>
           </div>
         </Card>
 
-        <Card className="w-96 ">
+        <Card className="w-96">
           <div>
             <span className="bg-indigo-600 text-white p-2 font-bold block mb-4">
               Resultado atual:
