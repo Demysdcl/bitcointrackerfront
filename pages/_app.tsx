@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
   const Link = ({title, href}: any) => <li>
-    <a onClick={() => router.push(href)} className="hover:underline">{title}</a>
+    <a onClick={() => router.push(href)} className="hover:underline cursor-pointer">{title}</a>
   </li>
 
   return <div>
