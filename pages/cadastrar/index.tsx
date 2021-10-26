@@ -17,8 +17,6 @@ const Cadastrar: NextPage = () => {
     const [bitcoinDTO, setBitcoinDTO] = useState(initialState) 
 
     const handleSubmit =  async () => {
-        console.log(JSON.stringify(bitcoinDTO))
-
         const toSave: Bitcoin = {
             ...bitcoinDTO,
             purchaseDate: new Date(bitcoinDTO.purchaseDate).toISOString()

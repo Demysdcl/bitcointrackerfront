@@ -33,7 +33,7 @@ const Editar: NextPage = () => {
     }, [id, updated])
 
     const handleSubmit =  async () => { 
-        console.table(bitcoinDTO) 
+      
         await bitcoinService.update(bitcoinDTO)
         setUpdated(true)
         setMessage('Atualização realizada com sucesso!')

@@ -22,7 +22,6 @@ const Investimentos: NextPage = () => {
     const handleDelete = async (id: string) => {
         await bitcoinService.delete(id)
         setUserPurchase(userPurchase.filter((item) => item._id !== id))
-
     }
 
     return <div>

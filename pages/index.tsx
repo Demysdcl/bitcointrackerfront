@@ -15,8 +15,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     if(bitValue && dashboard) {
-      setTotal(dashboard.fractions / bitValue)
-      console.log(bitValue)
+      setTotal(dashboard.fractions * bitValue)
     }
   }, [bitValue, dashboard])
 
@@ -82,7 +81,7 @@ const Home: NextPage = () => {
             Resultado atual:
           </span>
           <span className="font-bold text-2xl md:text-5xl text-gray-600">
-            R$ {total && total.toFixed(2)}
+            R$ { total.toFixed(2) }
           </span>
         </div>
       </Card>
