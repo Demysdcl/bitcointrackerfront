@@ -42,6 +42,7 @@ const Home: NextPage = () => {
 
   return (
     <div className="flex flex-wrap gap-4 justify-center">
+      <h1 className="text-3xl font-bold mb-10"> Dashboard </h1>  
       <Card className="w-96 ">
         <div>
           <span className="bg-indigo-600 text-white p-2 font-bold block mb-4">
