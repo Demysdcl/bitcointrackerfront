@@ -1,16 +1,32 @@
 import { NextPage } from "next";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Bitcoin } from "../api/bitcoin";
+import bitcoinService from "../api/bitcoin.service";
 
 const Cadastrar: NextPage = () => {
 
-    const [formatedDate, setFormatedDate] = useState<string>()
-
-    const [bitcoinDTO, setBitcoinDTO] = useState({
+    const initialState = {
         fractionQty: 0,
         purchaseValue: 0,
         bitcoinValue: 0,
-        purchaseDate: new Date()
-    }) 
+        purchaseDate: new Date().toISOString()
+    }
+
+    const [message, setMessage] = useState('')
+
+    const [bitcoinDTO, setBitcoinDTO] = useState(initialState) 
+
+    const handleSubmit =  async () => {
+        console.log(JSON.stringify(bitcoinDTO))
+
+        const toSave: Bitcoin = {
+            ...bitcoinDTO,
+            purchaseDate: new Date(bitcoinDTO.purchaseDate).toISOString()
+        }
+        await bitcoinService.createBitcoin(toSave)
+        setBitcoinDTO(initialState)
+        setMessage('Cadastro realizado com sucesso!')
+    }
 
     const setValue = (value: any, field: string) => {
         setBitcoinDTO({
@@ -19,16 +35,15 @@ const Cadastrar: NextPage = () => {
         })
     }
 
-    useEffect(() => {
-        setFormatedDate(bitcoinDTO.purchaseDate.toLocaleString('pt-BR'))
-    }, [bitcoinDTO.purchaseDate])
-
-
-
    return <div>
       <h1 className="text-3xl font-bold mb-10"> Cadastro </h1>   
 
-      <form className="w-96">
+      <span className="text-3 text-green-600 mb-4 block" >{message}</span>
+
+      <form className="w-96" onSubmit={(e) => {
+          e.preventDefault()
+          handleSubmit()
+        }}>
         <div className="mb-6">
             <label className="block text-gray-700 text-sm font-bold" htmlFor='bitcoinValue'>
                 Valor do bitcoin
@@ -37,7 +52,7 @@ const Cadastrar: NextPage = () => {
                 id="bitcoinValue"
                 type="number"
                 value={bitcoinDTO.bitcoinValue}
-                onChange={(event) => setValue(event.target.value, 'bitcoinValue')}
+                onChange={(event) => setValue(+event.target.value, 'bitcoinValue')}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" />
         </div>
 
@@ -49,7 +64,7 @@ const Cadastrar: NextPage = () => {
                 id="purchaseValue"
                 type="number"
                 value={bitcoinDTO.purchaseValue}
-                onChange={(event) => setValue(event.target.value, 'purchaseValue')}
+                onChange={(event) => setValue(+event.target.value, 'purchaseValue')}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" />
         </div>
 
@@ -61,24 +76,25 @@ const Cadastrar: NextPage = () => {
                 id="fractionQty"
                 type="number"
                 value={bitcoinDTO.fractionQty}
-                onChange={(event) => setValue(event.target.value, 'fractionQty')}
+                onChange={(event) => setValue(+event.target.value, 'fractionQty')}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" />
         </div>
 
         <div className="mb-6">
-            <label className="block text-gray-700 text-sm font-bold" htmlFor='fractionQty'>
+            <label className="block text-gray-700 text-sm font-bold" htmlFor='date'>
                 Data da compra
             </label>
             <input
-                id="fractionQty"
-                type="date"
-                value={formatedDate}
+                id="date"
+                type="text"
+                value={bitcoinDTO.purchaseDate}
                 onChange={(event) => setValue(event.target.value, 'purchaseDate')}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" />
         </div>
     
         <button className="bg-indigo-600 text-white px-4 py-2 rounded-md " type="submit">Salvar</button>
       </form>
+      
     </div>
 }
 

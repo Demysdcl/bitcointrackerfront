@@ -1,7 +1,7 @@
 export type Bitcoin = {
-    _id: string
+    _id?: string
     fractionQty: number
     purchaseValue: number
     bitcoinValue: number
-    purchaseDate: Date
+    purchaseDate: string
 }
