@@ -26,10 +26,10 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Link title="Dashbord" href="/">
             <ChartBarIcon width="16" />
           </Link>
-          <Link title="Meu investimentos" href="investimentos">
+          <Link title="Meu investimentos" href="/investimentos">
             <CashIcon width="16" />
           </Link>
-          <Link title="Cadastrar" href="cadastrar">
+          <Link title="Cadastrar" href="/cadastrar">
             <DocumentAddIcon width="16" />
           </Link>
         </ul>
