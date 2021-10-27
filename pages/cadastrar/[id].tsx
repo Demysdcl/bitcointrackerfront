@@ -44,7 +44,7 @@ const Editar: NextPage = () => {
 
         <span className="text-3 text-green-600 mb-4 block" >{message}</span>
 
-        <form className="w-96" onSubmit={(e) => {
+        <form className="w-5/6 max-w-sm" onSubmit={(e) => {
             e.preventDefault()
             handleSubmit()
         }}>

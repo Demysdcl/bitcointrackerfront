@@ -46,7 +46,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
           {showMobileMenu && (
             <OutsideAlerter handleOutside={() => setShowMobileMenu(false)}>
-              <OptionMenu className="gap-4 absolute right-0 top-6 bg-indigo-600 p-10 flex flex-col" />
+              <OptionMenu className="z-10 gap-4 absolute right-0 top-6 bg-indigo-600 p-10 flex flex-col" />
             </OutsideAlerter>
           )}
         </div>
