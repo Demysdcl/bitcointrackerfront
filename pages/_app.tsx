@@ -11,7 +11,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [showMobileMenu, setShowMobileMenu] = useState(false)
 
   const Link = ({title, href, children}: any) => <li>
-    <a onClick={() => router.push(href)} className="flex items-center gap-2 hover:underline cursor-pointer">
+    <a onClick={() => {
+      setShowMobileMenu(false)
+      router.push(href)
+    }} className="flex items-center gap-2 hover:underline cursor-pointer">
       {children}
       {title}
     </a>
