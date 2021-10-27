@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return <div className="w-screen">
     <header className="w-screen bg-indigo-600 text-white flex justify-center p-4 px-10">
-      <div className="flex justify-between  max-w-7xl flex-1">
+      <div className="flex justify-between max-w-7xl flex-1">
         <h1 className="text-lg font-bold cursor-pointer" onClick={() => router.push('/')}>
           Bitcoin Tracker
         </h1>
@@ -52,7 +52,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         </div>
       </div>
     </header>
-    <div className="mx-auto max-w-5xl mt-8 p-4">
+    <div className="mx-auto w-screen max-w-5xl mt-8 p-4">
       <Component {...pageProps} />
     </div>
     

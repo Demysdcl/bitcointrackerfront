@@ -25,7 +25,7 @@ const Investimentos: NextPage = () => {
     }
 
     return <div>
-         <h1 className="text-3xl font-bold mb-10"> Meus Investimentos </h1>  
+         <h1 className="text-3xl font-bold mb-10 w-full md:w-auto"> Meus Investimentos </h1>  
         {userPurchase ? (<table>
             <thead>
                 <tr className="bg-indigo-600 text-white">
