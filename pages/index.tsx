@@ -14,14 +14,13 @@ const Home: NextPage = () => {
   const [dashboard, setDashboard] = useState<Dashboard>()
 
   useEffect(() => {
-    if(bitValue && dashboard) {
+    if (bitValue && dashboard) {
       setTotal(dashboard.fractions * bitValue)
     }
   }, [bitValue, dashboard])
 
-
   const fetchData = async () => {
-    const bitcoin = await bitcoinService.getBitcoinValue()    
+    const bitcoin = await bitcoinService.getBitcoinValue()
     setBitvalue(bitcoin)
   }
 
@@ -35,19 +34,19 @@ const Home: NextPage = () => {
     getTotal()
     const oneHour = 10 * 1000
     const interval = setInterval(() => fetchData(), oneHour)
-    return () => { 
+    return () => {
       clearInterval(interval)
     }
   }, [])
 
-  const CardValue = ({title, value, type = 'R$'}: any) => (
+  const CardValue = ({ title, value, type = 'R$' }: any) => (
     <Card className="w-96 ">
       <div>
         <span className="bg-indigo-600 text-white p-2 font-bold block mb-4">
           {title}:
         </span>
         <span className="font-bold text-2xl md:text-5xl text-gray-600">
-        <sup className="text-sm">{type}</sup> {value || Number(0).toFixed(2)}
+          <sup className="text-sm">{type}</sup> {value || Number(0).toFixed(2)}
         </span>
       </div>
     </Card>
@@ -55,15 +54,24 @@ const Home: NextPage = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-10"> Dashboard </h1>  
-      
+      <h1 className="text-3xl font-bold mb-10"> Dashboard </h1>
+
       <div className="flex flex-wrap gap-4 justify-center">
+        <CardValue
+          title="Valor atual"
+          value={bitValue && bitValue.toFixed(2)}
+        />
 
-        <CardValue title="Valor atual" value={bitValue && bitValue.toFixed(2)} />
-        
-        <CardValue title="Total investido" value={dashboard && dashboard.totalInvested.toFixed(2)} />
+        <CardValue
+          title="Total investido"
+          value={dashboard && dashboard.totalInvested.toFixed(2)}
+        />
 
-        <CardValue title="Total adquirido" value={dashboard && dashboard.fractions.toFixed(8)} type="BTC" />
+        <CardValue
+          title="Total adquirido"
+          value={dashboard && dashboard.fractions.toFixed(8)}
+          type="BTC"
+        />
 
         <CardValue title="Resultado atual" value={total && total.toFixed(2)} />
       </div>
