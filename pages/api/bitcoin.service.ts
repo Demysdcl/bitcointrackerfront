@@ -1,47 +1,45 @@
+import faker from '@faker-js/faker'
 import httpService from '../../http/http.service'
-import { Bitcoin } from './bitcoin'
+import { Bitcoin, Dashboard } from './bitcoin'
+import { bitcoinList } from './mock'
+
+let list = bitcoinList
 
 const bitcoinService = {
-  getBitcoinValue: async (): Promise<any> => {
-    try {
-      const response = await httpService.get('/bitcoin/value')
-      return response.data
-    } catch (err) {
-      console.error(err)
-      return 0
-    }
+  getBitcoinValue: (): number => {
+    return Number(faker.finance.amount(260_000))
   },
-  createBitcoin: async (bitcoin: Bitcoin): Promise<any> => {
-    try {
-      const response = await httpService.post('/bitcoin', bitcoin)
-      return response.data
-    } catch (err) {
-      console.error(err)
-    }
+  createBitcoin: (bitcoin: Bitcoin): Bitcoin => {
+    bitcoin._id = faker.datatype.uuid()
+    list.push(bitcoin)
+    return bitcoin
   },
-  findAll: async (): Promise<any[]> => {
-    const response = await httpService.get('/bitcoin')
-    return response.data
-  },
+  findAll: (): Bitcoin[] => list,
   findById: async (id: string): Promise<any> => {
     const response = await httpService.get(`/bitcoin/${id}`)
     return response.data
   },
-  delete: async (id: string): Promise<any> => {
-    const response = await httpService.delete(`/bitcoin/${id}`)
-    return response.data
+  delete: (id: string): string => {
+    list = list.filter((item) => item._id !== id)
+    return 'Removido'
   },
-  update: async (bitcoin: Bitcoin): Promise<any> => {
-    const response = await httpService.put(`/bitcoin/${bitcoin._id}`, bitcoin)
-    return response.data
+  update: (bitcoin: Bitcoin): Bitcoin => {
+    list = list.map((item) => {
+      if (item._id === bitcoin._id) {
+        return bitcoin
+      }
+      return item
+    })
+    return bitcoin
   },
-  getTotal: async (): Promise<any> => {
-    const response = await httpService.get(`/bitcoin/total`)
-    return response.data
+  getTotal: (): number => {
+    return Number(faker.finance.amount())
   },
-  getDashboard: async (): Promise<any> => {
-    const response = await httpService.get(`/bitcoin/dashboard`)
-    return response.data
+  getDashboard: (): Dashboard => {
+    return {
+      fractions: list.reduce((acc, item) => acc + item.fractionQty, 0),
+      totalInvested: list.reduce((acc, item) => acc + item.purchaseValue, 0),
+    }
   },
 }
 

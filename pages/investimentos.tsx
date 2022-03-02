@@ -12,15 +12,13 @@ const Investimentos: NextPage = () => {
   const [userPurchase, setUserPurchase] = useState<Bitcoin[]>([])
 
   useEffect(() => {
-    const getAll = async () => {
-      const list = await bitcoinService.findAll()
-      setUserPurchase(list)
-    }
-    getAll()
+    const list = bitcoinService.findAll()
+    console.log({ list })
+    setUserPurchase(list)
   }, [])
 
-  const handleDelete = async (id: string) => {
-    await bitcoinService.delete(id)
+  const handleDelete = (id: string) => {
+    bitcoinService.delete(id)
     setUserPurchase(userPurchase.filter((item) => item._id !== id))
   }
 

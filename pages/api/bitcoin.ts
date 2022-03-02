@@ -5,3 +5,8 @@ export type Bitcoin = {
   bitcoinValue: number
   purchaseDate: string
 }
+
+export type Dashboard = {
+  totalInvested: number
+  fractions: number
+}

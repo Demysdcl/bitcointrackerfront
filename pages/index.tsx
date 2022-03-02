@@ -1,12 +1,8 @@
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import Card from '../components/Card'
+import { Dashboard } from './api/bitcoin'
 import bitcoinService from './api/bitcoin.service'
-
-type Dashboard = {
-  totalInvested: number
-  fractions: number
-}
 
 const Home: NextPage = () => {
   const [bitValue, setBitvalue] = useState<number>(0)
