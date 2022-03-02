@@ -1,26 +1,25 @@
-import React, { useEffect, useRef } from 'react'
+import { FC, ReactNode, useRef } from 'react'
+import useOutsideAlerter from '../hooks/useOutsideAlerter'
 
-function useOutsideAlerter(ref: any, handleOutside: () => void) {
-  useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (ref.current && !ref.current.contains(event.target)) {
-        handleOutside()
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside)
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [ref])
+interface OutsideAlerterProps {
+  handleOutside: () => void
+  children: ReactNode
+  className?: string
 }
 
-function OutsideAlerter(props: any) {
+const OutsideAlerter: FC<OutsideAlerterProps> = ({
+  handleOutside,
+  children,
+  className,
+}) => {
   const wrapperRef = useRef(null)
-  useOutsideAlerter(wrapperRef, props.handleOutside)
+  useOutsideAlerter(wrapperRef, handleOutside)
 
-  return <div ref={wrapperRef}>{props.children}</div>
+  return (
+    <div className={className} ref={wrapperRef}>
+      {children}
+    </div>
+  )
 }
 
 export default OutsideAlerter

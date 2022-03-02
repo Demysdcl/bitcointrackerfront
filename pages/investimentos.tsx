@@ -13,7 +13,6 @@ const Investimentos: NextPage = () => {
 
   useEffect(() => {
     const list = bitcoinService.findAll()
-    console.log({ list })
     setUserPurchase(list)
   }, [])
 

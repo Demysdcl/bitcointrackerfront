@@ -1,48 +1,15 @@
-import {
-  CashIcon,
-  ChartBarIcon,
-  DocumentAddIcon,
-  MenuIcon,
-} from '@heroicons/react/solid'
+import { MenuIcon } from '@heroicons/react/solid'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/dist/client/router'
 import React, { useState } from 'react'
 import 'tailwindcss/tailwind.css'
+import OptionMenu from '../components/OptionMenu'
 import OutsideAlerter from '../components/Outsider'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
   const [showMobileMenu, setShowMobileMenu] = useState(false)
-
-  const Link = ({ title, href, children }: any) => (
-    <li>
-      <a
-        onClick={() => {
-          setShowMobileMenu(false)
-          router.push(href)
-        }}
-        className="flex items-center gap-2 hover:underline cursor-pointer"
-      >
-        {children}
-        {title}
-      </a>
-    </li>
-  )
-
-  const OptionMenu = ({ className }: any) => (
-    <ul className={className}>
-      <Link title="Dashbord" href="/">
-        <ChartBarIcon width="16" />
-      </Link>
-      <Link title="Meu investimentos" href="/investimentos">
-        <CashIcon width="16" />
-      </Link>
-      <Link title="Cadastrar" href="/cadastrar">
-        <DocumentAddIcon width="16" />
-      </Link>
-    </ul>
-  )
 
   return (
     <div className="w-screen">
@@ -55,7 +22,10 @@ function MyApp({ Component, pageProps }: AppProps) {
             Bitcoin Tracker
           </h1>
 
-          <OptionMenu className="hidden md:flex gap-4" />
+          <OptionMenu
+            setShowMobileMenu={setShowMobileMenu}
+            className="hidden md:flex gap-4"
+          />
 
           <div className="flex md:hidden relative">
             <MenuIcon
@@ -65,7 +35,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 
             {showMobileMenu && (
               <OutsideAlerter handleOutside={() => setShowMobileMenu(false)}>
-                <OptionMenu className="z-10 gap-4 absolute right-0 top-6 bg-indigo-600 p-10 flex flex-col" />
+                <OptionMenu
+                  setShowMobileMenu={setShowMobileMenu}
+                  className="z-10 gap-4 absolute right-0 top-6 bg-indigo-600 p-10 flex flex-col"
+                />
               </OutsideAlerter>
             )}
           </div>
