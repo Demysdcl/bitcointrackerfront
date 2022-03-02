@@ -3,8 +3,8 @@ import type { AppProps } from 'next/app'
 import { useRouter } from 'next/dist/client/router'
 import React, { useState } from 'react'
 import 'tailwindcss/tailwind.css'
-import OptionMenu from '../components/OptionMenu'
 import OutsideAlerter from '../components/Outsider'
+import OptionMenu from './app/OptionMenu'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()

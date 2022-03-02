@@ -1,5 +1,4 @@
 import faker from '@faker-js/faker'
-import httpService from '../../http/http.service'
 import { Bitcoin, Dashboard } from './bitcoin'
 import { bitcoinList } from './mock'
 
@@ -16,8 +15,7 @@ const bitcoinService = {
   },
   findAll: (): Bitcoin[] => list,
   findById: async (id: string): Promise<any> => {
-    const response = await httpService.get(`/bitcoin/${id}`)
-    return response.data
+    return list.filter((item) => item._id === id)[0]
   },
   delete: (id: string): string => {
     list = list.filter((item) => item._id !== id)
