@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import Card from '../../components/Card'
+import Card from './Card'
 
 interface CardValueProps {
   title: string
@@ -13,7 +13,7 @@ const CardValue: FC<CardValueProps> = ({ title, value, type = 'R$' }) => (
       <span className="bg-indigo-600 text-white p-2 font-bold block mb-4">
         {title}:
       </span>
-      <span className="font-bold text-2xl md:text-5xl text-gray-600">
+      <span className="font-bold text-2xl md:text-5xl text-gray-600 dark:text-gray-300">
         <sup className="text-sm">{type}</sup> {value ?? Number(0).toFixed(2)}
       </span>
     </div>

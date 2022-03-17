@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction } from 'react'
-import Card from '../../components/Card'
-import { Bitcoin } from '../api/bitcoin'
+import Card from '../dashboard/Card'
+import { Bitcoin } from '../../api/bitcoin'
 import Action from './Action'
 
 interface ItemCardProps {
@@ -14,7 +14,7 @@ const ItemCard: FC<ItemCardProps> = ({
   userPurchase,
   setUserPurchase,
 }) => (
-  <Card className="relative mb-4 block md:hidden">
+  <Card className="relative mb-4 block ">
     <div className="flex flex-col relative gap-2 mt-8">
       <section className="flex justify-between">
         <strong>Quantidade:</strong>

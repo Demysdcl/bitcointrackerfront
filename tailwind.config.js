@@ -1,11 +1,15 @@
 module.exports = {
-  ppurge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
-  darkMode: false, // or 'media' or 'class'
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {},
   },
   variants: {
-    extend: {},
+    extend: {
+      scale: ['active', 'group-hover', 'hover'],
+      opacity: ['active', 'group-hover', 'hover'],
+    },
   },
   plugins: [],
 }

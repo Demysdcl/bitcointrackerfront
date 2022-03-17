@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import { useState } from 'react'
-import { Bitcoin } from '../api/bitcoin'
-import bitcoinService from '../api/bitcoin.service'
+import { Bitcoin } from '../../api/bitcoin'
+import bitcoinService from '../../api/bitcoin.service'
 
 const Cadastrar: NextPage = () => {
   const initialState = {
@@ -33,7 +33,7 @@ const Cadastrar: NextPage = () => {
   }
 
   return (
-    <div>
+    <div className="text-gray-700 dark:text-white">
       <h1 className="text-3xl font-bold mb-10"> Cadastro </h1>
 
       <span className="text-3 text-green-600 mb-4 block">{message}</span>
@@ -46,10 +46,7 @@ const Cadastrar: NextPage = () => {
         }}
       >
         <div className="mb-6">
-          <label
-            className="block text-gray-700 text-sm font-bold"
-            htmlFor="bitcoinValue"
-          >
+          <label className="block  text-sm font-bold" htmlFor="bitcoinValue">
             Valor do bitcoin
           </label>
           <input
@@ -62,10 +59,7 @@ const Cadastrar: NextPage = () => {
         </div>
 
         <div className="mb-6">
-          <label
-            className="block text-gray-700 text-sm font-bold"
-            htmlFor="purchaseValue"
-          >
+          <label className="block  text-sm font-bold" htmlFor="purchaseValue">
             Valor comprado
           </label>
           <input
@@ -78,10 +72,7 @@ const Cadastrar: NextPage = () => {
         </div>
 
         <div className="mb-6">
-          <label
-            className="block text-gray-700 text-sm font-bold"
-            htmlFor="fractionQty"
-          >
+          <label className="block  text-sm font-bold" htmlFor="fractionQty">
             Quantidade
           </label>
           <input
@@ -94,15 +85,12 @@ const Cadastrar: NextPage = () => {
         </div>
 
         <div className="mb-6">
-          <label
-            className="block text-gray-700 text-sm font-bold"
-            htmlFor="date"
-          >
+          <label className="block  text-sm font-bold" htmlFor="date">
             Data da compra
           </label>
           <input
             id="date"
-            type="text"
+            type="date"
             value={bitcoinDTO.purchaseDate}
             onChange={(event) => setValue(event.target.value, 'purchaseDate')}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2"

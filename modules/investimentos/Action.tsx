@@ -1,8 +1,8 @@
 import { PencilIcon, TrashIcon } from '@heroicons/react/solid'
 import { useRouter } from 'next/dist/client/router'
 import { Dispatch, FC, SetStateAction } from 'react'
-import { Bitcoin } from '../api/bitcoin'
-import bitcoinService from '../api/bitcoin.service'
+import { Bitcoin } from '../../api/bitcoin'
+import bitcoinService from '../../api/bitcoin.service'
 
 interface ActionProps {
   item: Bitcoin
@@ -32,14 +32,20 @@ const Action: FC<ActionProps> = ({
         className="cursor-pointer"
         onClick={() => router.push(`cadastrar/${item._id}`)}
       >
-        <PencilIcon width="24" color={color} />
+        <PencilIcon
+          width="24"
+          className="text-white dark:text-white md:text-black"
+        />
       </a>
 
       <a
         className="cursor-pointer"
         onClick={() => handleDelete(item._id || '')}
       >
-        <TrashIcon width="24" color={color} />
+        <TrashIcon
+          width="24"
+          className="text-white dark:text-white md:text-black"
+        />
       </a>
     </section>
   )

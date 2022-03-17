@@ -1,8 +1,8 @@
 import { NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
 import { useEffect, useState } from 'react'
-import { Bitcoin } from '../api/bitcoin'
-import bitcoinService from '../api/bitcoin.service'
+import { Bitcoin } from '../../api/bitcoin'
+import bitcoinService from '../../api/bitcoin.service'
 
 const Editar: NextPage = () => {
   const router = useRouter()
@@ -38,13 +38,13 @@ const Editar: NextPage = () => {
   }
 
   return (
-    <div>
+    <div className="dark:text-white">
       <h1 className="text-3xl font-bold mb-10"> Edição </h1>
 
       <span className="text-3 text-green-600 mb-4 block">{message}</span>
 
       <form
-        className="w-5/6 max-w-sm"
+        className="w-5/6 max-w-sm "
         onSubmit={(e) => {
           e.preventDefault()
           handleSubmit()
@@ -52,7 +52,7 @@ const Editar: NextPage = () => {
       >
         <div className="mb-6">
           <label
-            className="block text-gray-700 text-sm font-bold"
+            className="block text-gray-700 dark:text-white text-sm font-bold"
             htmlFor="bitcoinValue"
           >
             Valor do bitcoin
@@ -68,7 +68,7 @@ const Editar: NextPage = () => {
 
         <div className="mb-6">
           <label
-            className="block text-gray-700 text-sm font-bold"
+            className="block text-gray-700 dark:text-white text-sm font-bold"
             htmlFor="purchaseValue"
           >
             Valor comprado
@@ -84,7 +84,7 @@ const Editar: NextPage = () => {
 
         <div className="mb-6">
           <label
-            className="block text-gray-700 text-sm font-bold"
+            className="block text-gray-700 dark:text-white text-sm font-bold"
             htmlFor="fractionQty"
           >
             Quantidade
@@ -100,14 +100,14 @@ const Editar: NextPage = () => {
 
         <div className="mb-6">
           <label
-            className="block text-gray-700 text-sm font-bold"
+            className="block text-gray-700 dark:text-white text-sm font-bold"
             htmlFor="fractionQty"
           >
             Data da compra
           </label>
           <input
             id="fractionQty"
-            type="text"
+            type="date"
             value={bitcoinDTO?.purchaseDate}
             onChange={(event) => setValue(event.target.value, 'purchaseDate')}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2"

@@ -1,15 +1,20 @@
 import { format } from 'date-fns'
 import { Dispatch, FC, SetStateAction } from 'react'
-import { Bitcoin } from '../api/bitcoin'
+import { Bitcoin } from '../../api/bitcoin'
 import Action from './Action'
 
 interface DatasourceProps {
   userPurchase: Bitcoin[]
   setUserPurchase: Dispatch<SetStateAction<Bitcoin[]>>
+  className: string
 }
-const Datasource: FC<DatasourceProps> = ({ userPurchase, setUserPurchase }) => {
+const Datasource: FC<DatasourceProps> = ({
+  userPurchase,
+  setUserPurchase,
+  className,
+}) => {
   return (
-    <table className="hidden md:block w-11/12">
+    <table className={`w-11/12 ${className}`}>
       <thead>
         <tr className="bg-indigo-600 text-white">
           <th className="px-8 py-2">Quantidade</th>
@@ -26,7 +31,6 @@ const Datasource: FC<DatasourceProps> = ({ userPurchase, setUserPurchase }) => {
             <td> R$ {item.purchaseValue?.toLocaleString('pr-BR')} </td>
             <td> R$ {item.bitcoinValue?.toLocaleString('pr-BR')} </td>
             <td>
-              {' '}
               {item?.purchaseDate &&
                 format(new Date(item?.purchaseDate), 'dd-MM-yyyy')}{' '}
             </td>
