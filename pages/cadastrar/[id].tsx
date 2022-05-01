@@ -3,6 +3,7 @@ import { useRouter } from 'next/dist/client/router'
 import { useEffect, useState } from 'react'
 import { Bitcoin } from '../../api/bitcoin'
 import bitcoinService from '../../api/bitcoin.service'
+import InputLabel from '../../components/InputLabel'
 
 const Editar: NextPage = () => {
   const router = useRouter()
@@ -50,69 +51,34 @@ const Editar: NextPage = () => {
           handleSubmit()
         }}
       >
-        <div className="mb-6">
-          <label
-            className="block text-gray-700 dark:text-white text-sm font-bold"
-            htmlFor="bitcoinValue"
-          >
-            Valor do bitcoin
-          </label>
-          <input
-            id="bitcoinValue"
-            type="number"
-            value={bitcoinDTO?.bitcoinValue}
-            onChange={(event) => setValue(event.target.value, 'bitcoinValue')}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2"
-          />
-        </div>
+        <InputLabel
+          id="bitcoinValue"
+          labelText="Valor do bitcoin"
+          value={bitcoinDTO.bitcoinValue}
+          onChange={(value) => setValue(value, 'bitcoinValue')}
+        />
 
-        <div className="mb-6">
-          <label
-            className="block text-gray-700 dark:text-white text-sm font-bold"
-            htmlFor="purchaseValue"
-          >
-            Valor comprado
-          </label>
-          <input
-            id="purchaseValue"
-            type="number"
-            value={bitcoinDTO?.purchaseValue}
-            onChange={(event) => setValue(event.target.value, 'purchaseValue')}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2"
-          />
-        </div>
+        <InputLabel
+          id="purchaseValue"
+          labelText="Valor comprado"
+          value={bitcoinDTO.purchaseValue}
+          onChange={(value) => setValue(value, 'purchaseValue')}
+        />
 
-        <div className="mb-6">
-          <label
-            className="block text-gray-700 dark:text-white text-sm font-bold"
-            htmlFor="fractionQty"
-          >
-            Quantidade
-          </label>
-          <input
-            id="fractionQty"
-            type="number"
-            value={bitcoinDTO?.fractionQty}
-            onChange={(event) => setValue(event.target.value, 'fractionQty')}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2"
-          />
-        </div>
+        <InputLabel
+          id="purchaseValue"
+          labelText="Quantidade"
+          value={bitcoinDTO.fractionQty}
+          onChange={(value) => setValue(value, 'fractionQty')}
+        />
 
-        <div className="mb-6">
-          <label
-            className="block text-gray-700 dark:text-white text-sm font-bold"
-            htmlFor="fractionQty"
-          >
-            Data da compra
-          </label>
-          <input
-            id="fractionQty"
-            type="date"
-            value={bitcoinDTO?.purchaseDate}
-            onChange={(event) => setValue(event.target.value, 'purchaseDate')}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2"
-          />
-        </div>
+        <InputLabel
+          id="purchaseDate"
+          labelText="Data da compra"
+          type="date"
+          value={bitcoinDTO.purchaseDate}
+          onChange={(value) => setValue(value, 'purchaseDate')}
+        />
 
         <button
           className="bg-gray-700 text-white px-4 py-2 rounded-md"
